@@ -1,6 +1,6 @@
 import axios from "../../utils/axios";
 
-export const getVideos = async (tags, search) => {
+export const getVideos = async (tags, search, searchByAuthor) => {
     let queryString = "";
 
     if (tags?.length > 0) {
@@ -9,6 +9,12 @@ export const getVideos = async (tags, search) => {
 
     if (search !== "") {
         queryString += `&q=${search}`;
+    }
+
+    if (searchByAuthor !== "") {
+        searchByAuthor = searchByAuthor.split(" ");
+        searchByAuthor = searchByAuthor.join("%20");
+        queryString = `author=${searchByAuthor}`;
     }
 
     const response = await axios.get(`/videos/?${queryString}`);

@@ -1,8 +1,16 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { searchedByAuthor } from "../../features/filter/filterSlice";
 
 export default function VideoGridItem({ video = {} }) {
     const { id, thumbnail, title, duration, author, avatar, views, date } =
         video;
+
+    const dispatch = useDispatch();
+
+    const handleSearchByAuthor = (author) => {
+        dispatch(searchedByAuthor(author));
+    };
 
     return (
         <div className="col-span-12 sm:col-span-6 md:col-span-3 duration-300 hover:scale-[1.03]">
@@ -38,7 +46,8 @@ export default function VideoGridItem({ video = {} }) {
                         </Link>
                         <Link
                             className="text-gray-400 text-xs mt-2 hover:text-gray-600"
-                            to={`videos/${id}`}
+                            to="/"
+                            onClick={() => handleSearchByAuthor(author)}
                         >
                             {author}
                         </Link>
