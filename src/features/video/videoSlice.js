@@ -44,10 +44,10 @@ const videoSlice = createSlice({
                 state.isError = true;
                 state.error = action.error?.message;
             })
-            .addCase(updateLikes.fulfilled, (state, action) => {
+            .addCase(updateLikes.fulfilled, (state) => {
                 state.video.likes++;
             })
-            .addCase(updateDislikes.fulfilled, (state, action) => {
+            .addCase(updateDislikes.fulfilled, (state) => {
                 state.video.unlikes++;
             })
     },

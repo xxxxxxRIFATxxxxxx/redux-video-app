@@ -15,7 +15,7 @@ export default function Video() {
     const dispatch = useDispatch();
     const { videoId } = useParams();
 
-    const { id, link, title, tags, likes, unlikes } = video || {};
+    const { id, link, title, tags } = video || {};
 
     const handleLike = (videoId, currentLikes) => {
         dispatch(updateLikes({videoId, currentLikes}));
@@ -27,7 +27,7 @@ export default function Video() {
 
     useEffect(() => {
         dispatch(fetchVideo(videoId));
-    }, [dispatch, videoId, likes, unlikes]);
+    }, [dispatch, videoId]);
 
     // decide what to render
     let content = null;
