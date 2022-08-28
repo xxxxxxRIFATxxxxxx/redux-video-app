@@ -5,3 +5,16 @@ export const getVideo = async (id) => {
 
     return response.data;
 };
+
+export const increaseLikes = async (videoId, currentLikes) => {
+    const response = await axios.patch(`/videos/${videoId}`, { likes: currentLikes++ });
+
+    return response.data;
+};
+
+export const increaseDislikes = async (videoId, currentDislikes) => {
+    const response = await axios.patch(`/videos/${videoId}`, { likes: currentDislikes++ });
+
+    return response.data;
+};
+
