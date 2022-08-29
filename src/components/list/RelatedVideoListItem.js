@@ -1,7 +1,15 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { searchedByAuthor } from "../../features/filter/filterSlice";
 
 export default function RelatedVideoListItem({ video }) {
+    const dispatch = useDispatch();
+
     const { id, thumbnail, title, duration, author, views, date } = video || {};
+
+    const handleSearchByAuthor = (author) => {
+        dispatch(searchedByAuthor(author));
+    };
 
     return (
         <div className="w-full flex flex-row gap-2 mb-4">
@@ -22,7 +30,8 @@ export default function RelatedVideoListItem({ video }) {
                 </Link>
                 <Link
                     className="text-gray-400 text-xs mt-2 hover:text-gray-600"
-                    to={`/videos/${id}`}
+                    to="/"
+                    onClick={() => handleSearchByAuthor(author)}
                 >
                     {author}
                 </Link>
