@@ -4,14 +4,17 @@ export const getVideos = async (tags, search, searchByAuthor, page, limit) => {
     let queryString = "";
 
     if (tags?.length > 0) {
+        page = 1;
         queryString += tags.map((tag) => `tags_like=${tag}`).join("&");
     }
 
     if (search !== "") {
+        page = 1;
         queryString += `&q=${search}`;
     }
 
     if (searchByAuthor !== "") {
+        page = 1;
         searchByAuthor = searchByAuthor.split(" ");
         searchByAuthor = searchByAuthor.join("%20");
         queryString = `author=${searchByAuthor}`;

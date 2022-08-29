@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useMatch, useNavigate } from "react-router-dom";
 import { searched } from "../../features/filter/filterSlice";
@@ -21,6 +21,12 @@ export default function Search() {
         }
     };
 
+    useEffect(() => {
+        if (clear) {
+            setInput("");
+        };
+    }, [clear])
+
     return (
         <form onSubmit={handleSubmit}>
             <input
@@ -28,7 +34,7 @@ export default function Search() {
                 type="search"
                 name="search"
                 placeholder="Search"
-                value={`${clear ? "" : input}`}
+                value={input}
                 onChange={(e) => setInput(e.target.value)}
             />
         </form>

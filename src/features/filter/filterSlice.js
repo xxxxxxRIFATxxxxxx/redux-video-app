@@ -15,11 +15,13 @@ const filterSlice = createSlice({
             state.clear = false;
             state.tags.push(action.payload);
             state.searchByAuthor = "";
+            state.search = "";
         },
         tagRemoved: (state, action) => {
             state.clear = false;
-            const indexToRemove = state.tags.indexOf(action.payload);
             state.searchByAuthor = "";
+            state.search = "";
+            const indexToRemove = state.tags.indexOf(action.payload);
 
             if (indexToRemove !== -1) {
                 state.tags.splice(indexToRemove, 1);
@@ -30,11 +32,14 @@ const filterSlice = createSlice({
             state.clear = false;
             state.search = action.payload;
             state.searchByAuthor = "";
+            state.tags = [];
         },
 
         searchedByAuthor: (state, action) => {
             state.clear = false;
             state.searchByAuthor = action.payload;
+            state.search = "";
+            state.tags = [];
         },
 
         resetFilters: (state) => {
